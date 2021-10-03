@@ -4,6 +4,7 @@
 import csv
 
 import tensorflow as tf
+from tqdm import tqdm
 
 
 def _bytes_feature(value):
@@ -38,7 +39,7 @@ if __name__ == '__main__':
 
     with open(original_data_file) as csv_file:
         reader = csv.DictReader(csv_file, delimiter=",", quotechar='"')
-        for row in reader:
+        for row in tqdm(reader):
             row = clean_rows(row)
             example = tf.train.Example(
                 features=tf.train.Features(
