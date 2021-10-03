@@ -1,0 +1,19 @@
+version: '3.4'
+
+# 共通定義のテンプレート化
+x-template: &template
+  build:
+    context: .
+    dockerfile: "Dockerfile"
+  volumes:
+    - ./ml-pipelines:/opt/ml-pipelines:cached
+
+services:
+  ml-pipelines-jupyter:
+    container_name: 'ml-pipelines-jupyter'
+    image: ml-pipelines-jupyter:latest
+    user: root
+    ports:
+      - "8888:8888"
+    command: jupyter lab --allow-root
+    <<: *template
