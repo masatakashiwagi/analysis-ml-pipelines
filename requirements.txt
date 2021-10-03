@@ -8,3 +8,4 @@ tensorflow
 tensorflow-addons
 apache-beam
 apache-airflow
+tqdm
